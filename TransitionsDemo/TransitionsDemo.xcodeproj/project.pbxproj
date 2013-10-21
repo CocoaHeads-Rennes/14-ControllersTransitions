@@ -22,6 +22,7 @@
 		6347DE801815CEAD00B3C932 /* CHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE7F1815CEAD00B3C932 /* CHMainViewController.m */; };
 		6347DE841815CF8C00B3C932 /* CHLogoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE821815CF8C00B3C932 /* CHLogoController.m */; };
 		6347DE851815CF8C00B3C932 /* CHLogoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6347DE831815CF8C00B3C932 /* CHLogoController.xib */; };
+		6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		6347DE811815CF8C00B3C932 /* CHLogoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLogoController.h; sourceTree = "<group>"; };
 		6347DE821815CF8C00B3C932 /* CHLogoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLogoController.m; sourceTree = "<group>"; };
 		6347DE831815CF8C00B3C932 /* CHLogoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHLogoController.xib; sourceTree = "<group>"; };
+		6347DE8A1815DC0000B3C932 /* CHModalFromTopTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalFromTopTransition.h; sourceTree = "<group>"; };
+		6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalFromTopTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6347DE7A1815CE9300B3C932 /* ViewControllers */,
+				6347DE861815D6DE00B3C932 /* Transitions */,
 				6347DE541815CE0F00B3C932 /* CHAppDelegate.h */,
 				6347DE551815CE0F00B3C932 /* CHAppDelegate.m */,
 				6347DE571815CE0F00B3C932 /* Images.xcassets */,
@@ -163,6 +167,15 @@
 				6347DE831815CF8C00B3C932 /* CHLogoController.xib */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6347DE861815D6DE00B3C932 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				6347DE8A1815DC0000B3C932 /* CHModalFromTopTransition.h */,
+				6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +277,7 @@
 			files = (
 				6347DE801815CEAD00B3C932 /* CHMainViewController.m in Sources */,
 				6347DE841815CF8C00B3C932 /* CHLogoController.m in Sources */,
+				6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */,
 				6347DE521815CE0F00B3C932 /* main.m in Sources */,
 				6347DE561815CE0F00B3C932 /* CHAppDelegate.m in Sources */,
 			);

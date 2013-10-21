@@ -11,15 +11,19 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo-CocoaHeads" translatesAutoresizingMaskIntoConstraints="NO" id="wZ8-m5-6Y6">
-                    <rect key="frame" x="0.0" y="102" width="320" height="320"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo-CocoaHeads" translatesAutoresizingMaskIntoConstraints="NO" id="wZ8-m5-6Y6">
+                    <rect key="frame" x="25" y="101" width="250" height="250"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="Qzj-A2-Vsa"/>
+                        <constraint firstAttribute="height" constant="250" id="pqy-0V-l6Z"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CocoaHeads #14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mx-yg-eiv">
-                    <rect key="frame" x="75" y="445" width="170" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CocoaHeads #14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Mx-yg-eiv">
+                    <rect key="frame" x="82" y="359" width="136" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -27,8 +31,14 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8Mx-yg-eiv" firstAttribute="top" secondItem="wZ8-m5-6Y6" secondAttribute="bottom" constant="8" id="ErE-VW-eWW"/>
+                <constraint firstItem="wZ8-m5-6Y6" firstAttribute="centerX" secondItem="8Mx-yg-eiv" secondAttribute="centerX" id="ZVf-ZP-cEH"/>
+                <constraint firstAttribute="centerX" secondItem="wZ8-m5-6Y6" secondAttribute="centerX" id="gOm-4I-1Bk"/>
+                <constraint firstItem="wZ8-m5-6Y6" firstAttribute="top" secondItem="1" secondAttribute="top" constant="101" id="m6d-vQ-UgB"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
