@@ -1,14 +1,14 @@
 //
-//  CHModalfromTopTransition.m
+//  CHModalSpringTransition.m
 //  TransitionsDemo
 //
-//  Created by David Bonnet on 21/10/13.
+//  Created by David Bonnet on 22/10/13.
 //  Copyright (c) 2013 Cocoaheads. All rights reserved.
 //
 
-#import "CHModalFromTopTransition.h"
+#import "CHModalSpringTransition.h"
 
-@implementation CHModalFromTopTransition
+@implementation CHModalSpringTransition
 
 - (id)initForPresenting:(BOOL)presenting
 {
@@ -27,7 +27,7 @@
 // synchronize with the main animation.
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.5;
+    return 1.5;
 }
 
 
@@ -62,6 +62,10 @@
         [fromVC.view addSubview:dim];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                              delay:0.f
+             usingSpringWithDamping:0.5f
+              initialSpringVelocity:0.5f
+                            options:UIViewAnimationOptionCurveEaseOut
                          animations:^
          {
              fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
@@ -89,18 +93,18 @@
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                          animations:^
-        {
-            toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
-            
-            dim.alpha = 0;
-            
-            fromVC.view.frame = finalFrame;
-        }
+         {
+             toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+             
+             dim.alpha = 0;
+             
+             fromVC.view.frame = finalFrame;
+         }
                          completion:^(BOOL finished)
-        {
-            [dim removeFromSuperview];
-            [transitionContext completeTransition:YES];
-        }];
+         {
+             [dim removeFromSuperview];
+             [transitionContext completeTransition:YES];
+         }];
     }
 }
 
@@ -108,5 +112,6 @@
 {
     NSLog(@"Animation ended : %i", transitionCompleted);
 }
+
 
 @end

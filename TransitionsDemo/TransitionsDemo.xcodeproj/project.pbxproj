@@ -23,6 +23,7 @@
 		6347DE841815CF8C00B3C932 /* CHLogoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE821815CF8C00B3C932 /* CHLogoController.m */; };
 		6347DE851815CF8C00B3C932 /* CHLogoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6347DE831815CF8C00B3C932 /* CHLogoController.xib */; };
 		6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */; };
+		81B1DEB31816D00B0060540F /* CHModalSpringTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		6347DE831815CF8C00B3C932 /* CHLogoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHLogoController.xib; sourceTree = "<group>"; };
 		6347DE8A1815DC0000B3C932 /* CHModalFromTopTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalFromTopTransition.h; sourceTree = "<group>"; };
 		6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalFromTopTransition.m; sourceTree = "<group>"; };
+		81B1DEB11816D00B0060540F /* CHModalSpringTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalSpringTransition.h; sourceTree = "<group>"; };
+		81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalSpringTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 			children = (
 				6347DE8A1815DC0000B3C932 /* CHModalFromTopTransition.h */,
 				6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */,
+				81B1DEB11816D00B0060540F /* CHModalSpringTransition.h */,
+				81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			files = (
 				6347DE801815CEAD00B3C932 /* CHMainViewController.m in Sources */,
 				6347DE841815CF8C00B3C932 /* CHLogoController.m in Sources */,
+				81B1DEB31816D00B0060540F /* CHModalSpringTransition.m in Sources */,
 				6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */,
 				6347DE521815CE0F00B3C932 /* main.m in Sources */,
 				6347DE561815CE0F00B3C932 /* CHAppDelegate.m in Sources */,
@@ -482,6 +488,7 @@
 				6347DE701815CE0F00B3C932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6347DE711815CE1000B3C932 /* Build configuration list for PBXNativeTarget "TransitionsDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +497,7 @@
 				6347DE731815CE1000B3C932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

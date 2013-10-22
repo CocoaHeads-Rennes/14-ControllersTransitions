@@ -11,10 +11,18 @@
 
 //Transitions
 #import "CHModalFromTopTransition.h"
+#import "CHModalSpringTransition.h"
+
+typedef NS_ENUM(NSUInteger, CHContextTransition)
+{
+    CHContextTransition_ModalFromTop    = 1,
+    CHContextTransition_ModalSpring     = 2,
+};
 
 @interface CHMainViewController () <UIViewControllerTransitioningDelegate>
 
-@property (nonatomic, strong) CHLogoController *logoVC;
+@property (nonatomic, strong) CHLogoController      *logoVC;
+@property (nonatomic, assign) CHContextTransition   contextTransition;
 
 @end
 
@@ -55,7 +63,7 @@
 {
     // Return the number of rows in the section.
     if(section == 0) return 2;
-    else if(section == 1) return 1;
+    else if(section == 1) return 2;
     
     return 0;
 }
@@ -85,6 +93,10 @@
         if(indexPath.row == 0)
         {
             cell.textLabel.text = @"Modal from top";
+        }
+        else if(indexPath.row == 1)
+        {
+            cell.textLabel.text = @"Spring modal from top";
         }
     }
     
@@ -126,15 +138,21 @@
     {
         if(indexPath.row == 0)
         {
-            //Modal
-            [self addCloseButton];
-            
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
-            nav.transitioningDelegate = self;
-            nav.modalPresentationStyle = UIModalPresentationCustom;
-            
-            [self presentViewController:nav animated:YES completion:NULL];
+            self.contextTransition = CHContextTransition_ModalFromTop;
         }
+        else if(indexPath.row == 1)
+        {
+            self.contextTransition = CHContextTransition_ModalSpring;
+        }
+        
+        //Modal
+        [self addCloseButton];
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
+        nav.transitioningDelegate = self;
+        nav.modalPresentationStyle = UIModalPresentationCustom;
+        
+        [self presentViewController:nav animated:YES completion:NULL];
     }
 }
 
@@ -161,12 +179,34 @@
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
-    return [[CHModalFromTopTransition alloc] initForPresenting:YES];
+    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
+    
+    if(self.contextTransition == CHContextTransition_ModalFromTop)
+    {
+        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:YES];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalSpring)
+    {
+        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:YES];
+    }
+    
+    return transitionObject;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    return [[CHModalFromTopTransition alloc] initForPresenting:NO];
+    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
+    
+    if(self.contextTransition == CHContextTransition_ModalFromTop)
+    {
+        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:NO];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalSpring)
+    {
+        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:NO];
+    }
+    
+    return transitionObject;
 }
 
 //- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator
