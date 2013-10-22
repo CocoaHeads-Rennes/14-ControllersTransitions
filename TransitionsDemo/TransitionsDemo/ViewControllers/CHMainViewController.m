@@ -13,10 +13,13 @@
 #import "CHModalFromTopTransition.h"
 #import "CHModalSpringTransition.h"
 
+#import "CHModalDynamicDropTransition.h"
+
 typedef NS_ENUM(NSUInteger, CHContextTransition)
 {
     CHContextTransition_ModalFromTop    = 1,
     CHContextTransition_ModalSpring     = 2,
+    CHContextTransition_ModalDrop       = 3
 };
 
 @interface CHMainViewController () <UIViewControllerTransitioningDelegate>
@@ -64,6 +67,7 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     // Return the number of rows in the section.
     if(section == 0) return 2;
     else if(section == 1) return 2;
+    else if(section == 4) return 1;
     
     return 0;
 }
@@ -97,6 +101,13 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         else if(indexPath.row == 1)
         {
             cell.textLabel.text = @"Spring modal from top";
+        }
+    }
+    else if(indexPath.section == 4)
+    {
+        if(indexPath.row == 0)
+        {
+            cell.textLabel.text = @"Modal drop";
         }
     }
     
@@ -154,6 +165,22 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         
         [self presentViewController:nav animated:YES completion:NULL];
     }
+    else if(indexPath.section == 4)
+    {
+        if(indexPath.row == 0)
+        {
+            self.contextTransition = CHContextTransition_ModalDrop;
+        }
+        
+        //Modal
+        [self addCloseButton];
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
+        nav.transitioningDelegate = self;
+        nav.modalPresentationStyle = UIModalPresentationCustom;
+        
+        [self presentViewController:nav animated:YES completion:NULL];
+    }
 }
 
 ///////////////////////////////////////////////////////////
@@ -189,6 +216,10 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     {
         transitionObject = [[CHModalSpringTransition alloc] initForPresenting:YES];
     }
+    else if(self.contextTransition == CHContextTransition_ModalDrop)
+    {
+        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:YES];
+    }
     
     return transitionObject;
 }
@@ -204,6 +235,10 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     else if(self.contextTransition == CHContextTransition_ModalSpring)
     {
         transitionObject = [[CHModalSpringTransition alloc] initForPresenting:NO];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalDrop)
+    {
+        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:NO];
     }
     
     return transitionObject;
