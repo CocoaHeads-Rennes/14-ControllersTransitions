@@ -41,7 +41,7 @@
     
     UIView *cView               = [transitionContext containerView];
     
-    CGRect endFrame             = CGRectMake(20, 80, 280, fromVC.view.bounds.size.height-160);
+    CGRect endFrame             = CGRectMake(20, 80, 280, fView.bounds.size.height-160);
     CGRect startFrame           = endFrame;
     startFrame.origin.y        -= (endFrame.size.height + endFrame.origin.y);
     
@@ -59,7 +59,7 @@
                             onContentView:cView
                                  endFrame:endFrame
                                  duration:[self transitionDuration:transitionContext]
-                               completion:^(BOOL)
+                               completion:^(BOOL finished)
         {
             [transitionContext completeTransition:YES];
         }];
@@ -74,21 +74,13 @@
         CGRect finalFrame   = endFrame;
         finalFrame.origin.y += 2*(endFrame.size.height + endFrame.origin.y);
         
-        UIView *dim = [tView viewWithTag:1234];
-        
-        [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                         animations:^
+        [self dismissingAnimationFromView:fView
+                                   toView:tView
+                            onContentView:cView
+                                 endFrame:finalFrame
+                                 duration:[self transitionDuration:transitionContext]
+                               completion:^(BOOL finished)
         {
-            tView.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
-            [fView tintColorDidChange];
-            
-            dim.alpha = 0;
-            
-            fView.frame = finalFrame;
-        }
-                         completion:^(BOOL finished)
-        {
-            [dim removeFromSuperview];
             [transitionContext completeTransition:YES];
         }];
     }
@@ -120,7 +112,23 @@
 
 - (void)dismissingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
 {
+    UIView *dim = [tView viewWithTag:1234];
     
+    [UIView animateWithDuration:duration
+                     animations:^
+     {
+         tView.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+         [fView tintColorDidChange];
+         
+         dim.alpha = 0;
+         
+         fView.frame = endFrame;
+     }
+                     completion:^(BOOL finished)
+     {
+         [dim removeFromSuperview];
+         if(completion) completion(finished);
+     }];
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted

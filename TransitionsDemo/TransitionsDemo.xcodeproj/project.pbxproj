@@ -61,6 +61,7 @@
 		6347DE831815CF8C00B3C932 /* CHLogoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHLogoController.xib; sourceTree = "<group>"; };
 		6347DE8A1815DC0000B3C932 /* CHModalFromTopTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalFromTopTransition.h; sourceTree = "<group>"; };
 		6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalFromTopTransition.m; sourceTree = "<group>"; };
+		63D06FA518188854009B064E /* CHModalFromTopTransition_subclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHModalFromTopTransition_subclass.h; sourceTree = "<group>"; };
 		81B1DEB11816D00B0060540F /* CHModalSpringTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalSpringTransition.h; sourceTree = "<group>"; };
 		81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalSpringTransition.m; sourceTree = "<group>"; };
 		81B1DEB61816DD8E0060540F /* CHModalDynamicDropTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalDynamicDropTransition.h; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */,
 				81B1DEB11816D00B0060540F /* CHModalSpringTransition.h */,
 				81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */,
+				63D06FA518188854009B064E /* CHModalFromTopTransition_subclass.h */,
 			);
 			name = "Simple custom";
 			sourceTree = "<group>";
