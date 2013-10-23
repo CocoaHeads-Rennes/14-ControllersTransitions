@@ -36,65 +36,55 @@
 {
     NSLog(@"Animate with context : %@", transitionContext);
     
-    UIViewController *fromVC    = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC      = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *fView               = [[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] view];
+    UIView *tView               = [[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] view];
     
     UIView *cView               = [transitionContext containerView];
     
     CGRect endFrame             = CGRectMake(20, 80, 280, fromVC.view.bounds.size.height-160);
     CGRect startFrame           = endFrame;
-    startFrame.origin.y -= (endFrame.size.height + endFrame.origin.y);
+    startFrame.origin.y        -= (endFrame.size.height + endFrame.origin.y);
     
     if(self.presenting)
     {
-        fromVC.view.userInteractionEnabled = NO;
+        fView.userInteractionEnabled = NO;
         
-        [cView addSubview:fromVC.view];
-        [cView addSubview:toVC.view];
+        [cView addSubview:fView];
+        [cView addSubview:tView];
         
-        toVC.view.frame = startFrame;
-        toVC.view.clipsToBounds = YES;
+        tView.frame = startFrame;
         
-        UIView *dim = [[UIView alloc] initWithFrame:fromVC.view.bounds];
-        dim.backgroundColor = [UIColor blackColor];
-        dim.alpha = 0;
-        dim.tag = 1234;
-        [fromVC.view addSubview:dim];
-        
-        [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                         animations:^
-         {
-             fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
-             
-             dim.alpha = 0.6;
-             
-             toVC.view.frame = endFrame;
-         }
-                         completion:^(BOOL finished)
-         {
-             [transitionContext completeTransition:YES];
-         }];
+        [self presentingAnimationFromView:fView
+                                   toView:tView
+                            onContentView:cView
+                                 endFrame:endFrame
+                                 duration:[self transitionDuration:transitionContext]
+                               completion:^(BOOL)
+        {
+            [transitionContext completeTransition:YES];
+        }];
     }
     else
     {
-        toVC.view.userInteractionEnabled = YES;
+        tView.userInteractionEnabled = YES;
         
-        [cView addSubview:toVC.view];
-        [cView addSubview:fromVC.view];
+        [cView addSubview:tView];
+        [cView addSubview:fView];
         
         CGRect finalFrame   = endFrame;
         finalFrame.origin.y += 2*(endFrame.size.height + endFrame.origin.y);
         
-        UIView *dim = [toVC.view viewWithTag:1234];
+        UIView *dim = [tView viewWithTag:1234];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                          animations:^
         {
-            toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+            tView.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+            [fView tintColorDidChange];
             
             dim.alpha = 0;
             
-            fromVC.view.frame = finalFrame;
+            fView.frame = finalFrame;
         }
                          completion:^(BOOL finished)
         {
@@ -102,6 +92,35 @@
             [transitionContext completeTransition:YES];
         }];
     }
+}
+
+- (void)presentingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
+{
+    UIView *dim = [[UIView alloc] initWithFrame:fView.bounds];
+    dim.backgroundColor = [UIColor blackColor];
+    dim.alpha = 0;
+    dim.tag = 1234;
+    [fView addSubview:dim];
+    
+    [UIView animateWithDuration:duration
+                     animations:^
+     {
+         fView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+         [fView tintColorDidChange];
+         
+         dim.alpha = 0.6;
+         
+         tView.frame = endFrame;
+     }
+                     completion:^(BOOL finished)
+     {
+         if(completion) completion(finished);
+     }];
+}
+
+- (void)dismissingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
+{
+    
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted
