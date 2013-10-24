@@ -13,6 +13,8 @@
 #import "CHModalFromTopTransition.h"
 #import "CHModalSpringTransition.h"
 
+#import "CECardsAnimationController.h"
+
 #import "CHModalDynamicDropTransition.h"
 
 typedef NS_ENUM(NSUInteger, CHContextTransition)
@@ -20,7 +22,8 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     CHContextTransition_None            = 0,
     CHContextTransition_ModalFromTop    = 1,
     CHContextTransition_ModalSpring     = 2,
-    CHContextTransition_ModalDrop       = 3
+    CHContextTransition_ModalCard       = 3,
+    CHContextTransition_ModalDrop       = 4
 };
 
 @interface CHMainViewController () <UIViewControllerTransitioningDelegate>
@@ -68,6 +71,7 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     // Return the number of rows in the section.
     if(section == 0) return 2;
     else if(section == 1) return 2;
+    else if(section == 2) return 1;
     else if(section == 4) return 1;
     
     return 0;
@@ -102,6 +106,13 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         else if(indexPath.row == 1)
         {
             cell.textLabel.text = @"Spring modal from top";
+        }
+    }
+    else if(indexPath.section == 2)
+    {
+        if(indexPath.row == 0)
+        {
+            cell.textLabel.text = @"Modal cards";
         }
     }
     else if(indexPath.section == 4)
@@ -152,6 +163,13 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         else if(indexPath.row == 1)
         {
             [self presentControllerModallyWithTransition:CHContextTransition_ModalSpring];
+        }
+    }
+    else if(indexPath.section == 2)
+    {
+        if(indexPath.row == 0)
+        {
+            [self presentControllerModallyWithTransition:CHContextTransition_ModalCard];
         }
     }
     else if(indexPath.section == 4)
@@ -212,6 +230,10 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     {
         transitionObject = [[CHModalSpringTransition alloc] initForPresenting:YES];
     }
+    else if(self.contextTransition == CHContextTransition_ModalCard)
+    {
+        transitionObject = [[CECardsAnimationController alloc] init];
+    }
     else if(self.contextTransition == CHContextTransition_ModalDrop)
     {
         transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:YES];
@@ -231,6 +253,12 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     else if(self.contextTransition == CHContextTransition_ModalSpring)
     {
         transitionObject = [[CHModalSpringTransition alloc] initForPresenting:NO];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalCard)
+    {
+        CECardsAnimationController *carAnimator = [[CECardsAnimationController alloc] init];
+        carAnimator.reverse = YES;
+        transitionObject = carAnimator;
     }
     else if(self.contextTransition == CHContextTransition_ModalDrop)
     {
