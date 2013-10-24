@@ -25,6 +25,18 @@
 		6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347DE8B1815DC0000B3C932 /* CHModalFromTopTransition.m */; };
 		81B1DEB31816D00B0060540F /* CHModalSpringTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */; };
 		81B1DEB81816DD8E0060540F /* CHModalDynamicDropTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEB71816DD8E0060540F /* CHModalDynamicDropTransition.m */; };
+		81B1DED4181920B80060540F /* CECardsAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEBC181920B80060540F /* CECardsAnimationController.m */; };
+		81B1DED5181920B80060540F /* CECrossfadeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEBE181920B80060540F /* CECrossfadeAnimationController.m */; };
+		81B1DED6181920B80060540F /* CEExplodeAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEC0181920B80060540F /* CEExplodeAnimationController.m */; };
+		81B1DED7181920B80060540F /* CEFlipAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEC2181920B80060540F /* CEFlipAnimationController.m */; };
+		81B1DED8181920B80060540F /* CEFoldAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEC4181920B80060540F /* CEFoldAnimationController.m */; };
+		81B1DED9181920B80060540F /* CENatGeoAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEC6181920B80060540F /* CENatGeoAnimationController.m */; };
+		81B1DEDA181920B80060540F /* CEReversibleAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEC8181920B80060540F /* CEReversibleAnimationController.m */; };
+		81B1DEDB181920B80060540F /* CETurnAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DECA181920B80060540F /* CETurnAnimationController.m */; };
+		81B1DEDC181920B80060540F /* CEBaseInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DECD181920B80060540F /* CEBaseInteractionController.m */; };
+		81B1DEDD181920B80060540F /* CEHorizontalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DECF181920B80060540F /* CEHorizontalSwipeInteractionController.m */; };
+		81B1DEDE181920B80060540F /* CEPinchInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DED1181920B80060540F /* CEPinchInteractionController.m */; };
+		81B1DEDF181920B80060540F /* CEVerticalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DED3181920B80060540F /* CEVerticalSwipeInteractionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +78,30 @@
 		81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalSpringTransition.m; sourceTree = "<group>"; };
 		81B1DEB61816DD8E0060540F /* CHModalDynamicDropTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHModalDynamicDropTransition.h; sourceTree = "<group>"; };
 		81B1DEB71816DD8E0060540F /* CHModalDynamicDropTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHModalDynamicDropTransition.m; sourceTree = "<group>"; };
+		81B1DEBB181920B80060540F /* CECardsAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECardsAnimationController.h; sourceTree = "<group>"; };
+		81B1DEBC181920B80060540F /* CECardsAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECardsAnimationController.m; sourceTree = "<group>"; };
+		81B1DEBD181920B80060540F /* CECrossfadeAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CECrossfadeAnimationController.h; sourceTree = "<group>"; };
+		81B1DEBE181920B80060540F /* CECrossfadeAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CECrossfadeAnimationController.m; sourceTree = "<group>"; };
+		81B1DEBF181920B80060540F /* CEExplodeAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEExplodeAnimationController.h; sourceTree = "<group>"; };
+		81B1DEC0181920B80060540F /* CEExplodeAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEExplodeAnimationController.m; sourceTree = "<group>"; };
+		81B1DEC1181920B80060540F /* CEFlipAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFlipAnimationController.h; sourceTree = "<group>"; };
+		81B1DEC2181920B80060540F /* CEFlipAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFlipAnimationController.m; sourceTree = "<group>"; };
+		81B1DEC3181920B80060540F /* CEFoldAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFoldAnimationController.h; sourceTree = "<group>"; };
+		81B1DEC4181920B80060540F /* CEFoldAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFoldAnimationController.m; sourceTree = "<group>"; };
+		81B1DEC5181920B80060540F /* CENatGeoAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENatGeoAnimationController.h; sourceTree = "<group>"; };
+		81B1DEC6181920B80060540F /* CENatGeoAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENatGeoAnimationController.m; sourceTree = "<group>"; };
+		81B1DEC7181920B80060540F /* CEReversibleAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEReversibleAnimationController.h; sourceTree = "<group>"; };
+		81B1DEC8181920B80060540F /* CEReversibleAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEReversibleAnimationController.m; sourceTree = "<group>"; };
+		81B1DEC9181920B80060540F /* CETurnAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETurnAnimationController.h; sourceTree = "<group>"; };
+		81B1DECA181920B80060540F /* CETurnAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETurnAnimationController.m; sourceTree = "<group>"; };
+		81B1DECC181920B80060540F /* CEBaseInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEBaseInteractionController.h; sourceTree = "<group>"; };
+		81B1DECD181920B80060540F /* CEBaseInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEBaseInteractionController.m; sourceTree = "<group>"; };
+		81B1DECE181920B80060540F /* CEHorizontalSwipeInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEHorizontalSwipeInteractionController.h; sourceTree = "<group>"; };
+		81B1DECF181920B80060540F /* CEHorizontalSwipeInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEHorizontalSwipeInteractionController.m; sourceTree = "<group>"; };
+		81B1DED0181920B80060540F /* CEPinchInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPinchInteractionController.h; sourceTree = "<group>"; };
+		81B1DED1181920B80060540F /* CEPinchInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPinchInteractionController.m; sourceTree = "<group>"; };
+		81B1DED2181920B80060540F /* CEVerticalSwipeInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEVerticalSwipeInteractionController.h; sourceTree = "<group>"; };
+		81B1DED3181920B80060540F /* CEVerticalSwipeInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEVerticalSwipeInteractionController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				81B1DEB41816D5AE0060540F /* Simple custom */,
+				81B1DEB9181920B80060540F /* VCLibrary */,
 				81B1DEB51816DAC90060540F /* Dynamics */,
 			);
 			path = Transitions;
@@ -204,6 +241,53 @@
 				81B1DEB71816DD8E0060540F /* CHModalDynamicDropTransition.m */,
 			);
 			name = Dynamics;
+			sourceTree = "<group>";
+		};
+		81B1DEB9181920B80060540F /* VCLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				81B1DEBA181920B80060540F /* AnimationControllers */,
+				81B1DECB181920B80060540F /* InteractionControllers */,
+			);
+			path = VCLibrary;
+			sourceTree = "<group>";
+		};
+		81B1DEBA181920B80060540F /* AnimationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				81B1DEC7181920B80060540F /* CEReversibleAnimationController.h */,
+				81B1DEC8181920B80060540F /* CEReversibleAnimationController.m */,
+				81B1DEBB181920B80060540F /* CECardsAnimationController.h */,
+				81B1DEBC181920B80060540F /* CECardsAnimationController.m */,
+				81B1DEBD181920B80060540F /* CECrossfadeAnimationController.h */,
+				81B1DEBE181920B80060540F /* CECrossfadeAnimationController.m */,
+				81B1DEBF181920B80060540F /* CEExplodeAnimationController.h */,
+				81B1DEC0181920B80060540F /* CEExplodeAnimationController.m */,
+				81B1DEC1181920B80060540F /* CEFlipAnimationController.h */,
+				81B1DEC2181920B80060540F /* CEFlipAnimationController.m */,
+				81B1DEC3181920B80060540F /* CEFoldAnimationController.h */,
+				81B1DEC4181920B80060540F /* CEFoldAnimationController.m */,
+				81B1DEC5181920B80060540F /* CENatGeoAnimationController.h */,
+				81B1DEC6181920B80060540F /* CENatGeoAnimationController.m */,
+				81B1DEC9181920B80060540F /* CETurnAnimationController.h */,
+				81B1DECA181920B80060540F /* CETurnAnimationController.m */,
+			);
+			path = AnimationControllers;
+			sourceTree = "<group>";
+		};
+		81B1DECB181920B80060540F /* InteractionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				81B1DECC181920B80060540F /* CEBaseInteractionController.h */,
+				81B1DECD181920B80060540F /* CEBaseInteractionController.m */,
+				81B1DECE181920B80060540F /* CEHorizontalSwipeInteractionController.h */,
+				81B1DECF181920B80060540F /* CEHorizontalSwipeInteractionController.m */,
+				81B1DED0181920B80060540F /* CEPinchInteractionController.h */,
+				81B1DED1181920B80060540F /* CEPinchInteractionController.m */,
+				81B1DED2181920B80060540F /* CEVerticalSwipeInteractionController.h */,
+				81B1DED3181920B80060540F /* CEVerticalSwipeInteractionController.m */,
+			);
+			path = InteractionControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,13 +387,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B1DEDD181920B80060540F /* CEHorizontalSwipeInteractionController.m in Sources */,
+				81B1DED4181920B80060540F /* CECardsAnimationController.m in Sources */,
 				6347DE801815CEAD00B3C932 /* CHMainViewController.m in Sources */,
+				81B1DED7181920B80060540F /* CEFlipAnimationController.m in Sources */,
+				81B1DEDB181920B80060540F /* CETurnAnimationController.m in Sources */,
+				81B1DEDA181920B80060540F /* CEReversibleAnimationController.m in Sources */,
 				6347DE841815CF8C00B3C932 /* CHLogoController.m in Sources */,
+				81B1DED9181920B80060540F /* CENatGeoAnimationController.m in Sources */,
 				81B1DEB31816D00B0060540F /* CHModalSpringTransition.m in Sources */,
+				81B1DEDE181920B80060540F /* CEPinchInteractionController.m in Sources */,
 				81B1DEB81816DD8E0060540F /* CHModalDynamicDropTransition.m in Sources */,
+				81B1DED5181920B80060540F /* CECrossfadeAnimationController.m in Sources */,
+				81B1DED8181920B80060540F /* CEFoldAnimationController.m in Sources */,
 				6347DE8C1815DC0000B3C932 /* CHModalFromTopTransition.m in Sources */,
+				81B1DEDF181920B80060540F /* CEVerticalSwipeInteractionController.m in Sources */,
 				6347DE521815CE0F00B3C932 /* main.m in Sources */,
+				81B1DED6181920B80060540F /* CEExplodeAnimationController.m in Sources */,
 				6347DE561815CE0F00B3C932 /* CHAppDelegate.m in Sources */,
+				81B1DEDC181920B80060540F /* CEBaseInteractionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
