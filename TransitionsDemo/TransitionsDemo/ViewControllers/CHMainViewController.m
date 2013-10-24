@@ -14,19 +14,28 @@
 #import "CHModalSpringTransition.h"
 
 #import "CECardsAnimationController.h"
+#import "CEFlipAnimationController.h"
 
 #import "CHModalDynamicDropTransition.h"
+
+//Interractions
+#import "CHSlideInterrator.h"
+#import "CEHorizontalSwipeInteractionController.h"
 
 typedef NS_ENUM(NSUInteger, CHContextTransition)
 {
     CHContextTransition_None            = 0,
     CHContextTransition_ModalFromTop    = 1,
+    
     CHContextTransition_ModalSpring     = 2,
+    
     CHContextTransition_ModalCard       = 3,
-    CHContextTransition_ModalDrop       = 4
+    CHContextTransition_ModalFlip       = 4,
+    
+    CHContextTransition_ModalDrop       = 5
 };
 
-@interface CHMainViewController () <UIViewControllerTransitioningDelegate>
+@interface CHMainViewController () <UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) CHLogoController      *logoVC;
 @property (nonatomic, assign) CHContextTransition   contextTransition;
@@ -34,6 +43,155 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
 @end
 
 @implementation CHMainViewController
+
+///////////////////////////////////////////////////////////
+#pragma mark - Actions
+
+
+
+
+#pragma mark Modal presentation
+
+- (void)presentControllerModallyWithTransition:(CHContextTransition)transition
+{
+    self.contextTransition = transition;
+    [self addCloseButton];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
+    
+    if(transition != CHContextTransition_None)
+    {
+        nav.transitioningDelegate = self;
+        nav.modalPresentationStyle = UIModalPresentationCustom;
+    }
+    
+    [self presentViewController:nav animated:YES completion:NULL];
+}
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////
+#pragma mark - UIViewControllerTransitioningDelegate
+
+#pragma mark Animation delegate
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                   presentingController:(UIViewController *)presenting
+                                                                       sourceController:(UIViewController *)source
+{
+    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
+    
+    if(self.contextTransition == CHContextTransition_ModalFromTop)
+    {
+        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:YES];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalSpring)
+    {
+        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:YES];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalCard)
+    {
+        transitionObject = [[CECardsAnimationController alloc] init];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalFlip)
+    {
+        CEFlipAnimationController *flipAnimator = [[CEFlipAnimationController alloc] init];
+        flipAnimator.reverse = YES;
+        transitionObject = flipAnimator;
+    }
+    else if(self.contextTransition == CHContextTransition_ModalDrop)
+    {
+        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:YES];
+    }
+    
+    return transitionObject;
+}
+
+
+
+
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
+    
+    if(self.contextTransition == CHContextTransition_ModalFromTop)
+    {
+        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:NO];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalSpring)
+    {
+        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:NO];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalCard)
+    {
+        CECardsAnimationController *cardAnimator = [[CECardsAnimationController alloc] init];
+        cardAnimator.reverse = YES;
+        transitionObject = cardAnimator;
+    }
+    else if(self.contextTransition == CHContextTransition_ModalFlip)
+    {
+        transitionObject = [[CEFlipAnimationController alloc] init];
+    }
+    else if(self.contextTransition == CHContextTransition_ModalDrop)
+    {
+        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:NO];
+    }
+    
+    return transitionObject;
+}
+
+
+
+
+
+#pragma mark Interaction delegate
+
+//- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator
+//{
+//    id <UIViewControllerInteractiveTransitioning> interactionObject = nil;
+//    
+//    if(self.contextTransition == CHContextTransition_ModalFlip)
+//    {
+//        CEHorizontalSwipeInteractionController *horSwipe = [[CEHorizontalSwipeInteractionController alloc] init];
+//        
+//        [horSwipe wireToViewController:self.presentedViewController forOperation:CEInteractionOperationDismiss];
+//        
+//        interactionObject = horSwipe;
+//    }
+//    
+//    return interactionObject;
+//}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC
+{
+    return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
+{
+    return [[CHSlideInterrator alloc] initWithNavigationController:navigationController];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Functionnal code
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,7 +206,7 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
 {
     [super viewDidLoad];
     self.title = @"Transitions demo";
-
+    
     self.logoVC = [CHLogoController new];
 }
 
@@ -71,7 +229,7 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     // Return the number of rows in the section.
     if(section == 0) return 2;
     else if(section == 1) return 2;
-    else if(section == 2) return 1;
+    else if(section == 2) return 2;
     else if(section == 4) return 1;
     
     return 0;
@@ -112,7 +270,11 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     {
         if(indexPath.row == 0)
         {
-            cell.textLabel.text = @"Modal cards";
+            cell.textLabel.text = @"Modal card";
+        }
+        else if(indexPath.row == 1)
+        {
+            cell.textLabel.text = @"Modal flip";
         }
     }
     else if(indexPath.section == 4)
@@ -147,6 +309,9 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         if(indexPath.row == 0)
         {
             //Slide push
+            self.navigationController.delegate              = self;
+            self.navigationController.transitioningDelegate = self;
+            
             [self.navigationController pushViewController:self.logoVC animated:YES];
         }
         else if(indexPath.row == 1)
@@ -171,6 +336,10 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         {
             [self presentControllerModallyWithTransition:CHContextTransition_ModalCard];
         }
+        else if(indexPath.row == 1)
+        {
+            [self presentControllerModallyWithTransition:CHContextTransition_ModalFlip];
+        }
     }
     else if(indexPath.section == 4)
     {
@@ -181,24 +350,7 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
     }
 }
 
-///////////////////////////////////////////////////////////
-#pragma mark - Actions
-
-- (void)presentControllerModallyWithTransition:(CHContextTransition)transition
-{
-    self.contextTransition = transition;
-    [self addCloseButton];
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
-    
-    if(transition != CHContextTransition_None)
-    {
-        nav.transitioningDelegate = self;
-        nav.modalPresentationStyle = UIModalPresentationCustom;
-    }
-    
-    [self presentViewController:nav animated:YES completion:NULL];
-}
+#pragma mark - Functional actions
 
 - (void)addCloseButton
 {
@@ -214,69 +366,5 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         self.logoVC.navigationItem.leftBarButtonItem = nil;
     }];
 }
-
-///////////////////////////////////////////////////////////
-#pragma mark - UIViewControllerTransitioningDelegate
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
-    
-    if(self.contextTransition == CHContextTransition_ModalFromTop)
-    {
-        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:YES];
-    }
-    else if(self.contextTransition == CHContextTransition_ModalSpring)
-    {
-        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:YES];
-    }
-    else if(self.contextTransition == CHContextTransition_ModalCard)
-    {
-        transitionObject = [[CECardsAnimationController alloc] init];
-    }
-    else if(self.contextTransition == CHContextTransition_ModalDrop)
-    {
-        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:YES];
-    }
-    
-    return transitionObject;
-}
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    id <UIViewControllerAnimatedTransitioning> transitionObject = nil;
-    
-    if(self.contextTransition == CHContextTransition_ModalFromTop)
-    {
-        transitionObject = [[CHModalFromTopTransition alloc] initForPresenting:NO];
-    }
-    else if(self.contextTransition == CHContextTransition_ModalSpring)
-    {
-        transitionObject = [[CHModalSpringTransition alloc] initForPresenting:NO];
-    }
-    else if(self.contextTransition == CHContextTransition_ModalCard)
-    {
-        CECardsAnimationController *carAnimator = [[CECardsAnimationController alloc] init];
-        carAnimator.reverse = YES;
-        transitionObject = carAnimator;
-    }
-    else if(self.contextTransition == CHContextTransition_ModalDrop)
-    {
-        transitionObject = [[CHModalDynamicDropTransition alloc] initForPresenting:NO];
-    }
-    
-    return transitionObject;
-}
-
-//- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator
-//{
-//    
-//}
-//
-//- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator
-//{
-//    
-//}
-
 
 @end

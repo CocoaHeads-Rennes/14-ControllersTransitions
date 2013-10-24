@@ -37,6 +37,7 @@
 		81B1DEDD181920B80060540F /* CEHorizontalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DECF181920B80060540F /* CEHorizontalSwipeInteractionController.m */; };
 		81B1DEDE181920B80060540F /* CEPinchInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DED1181920B80060540F /* CEPinchInteractionController.m */; };
 		81B1DEDF181920B80060540F /* CEVerticalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DED3181920B80060540F /* CEVerticalSwipeInteractionController.m */; };
+		81B1DEE218196AB60060540F /* CHSlideInterrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B1DEE118196AB60060540F /* CHSlideInterrator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,8 @@
 		81B1DED1181920B80060540F /* CEPinchInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPinchInteractionController.m; sourceTree = "<group>"; };
 		81B1DED2181920B80060540F /* CEVerticalSwipeInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEVerticalSwipeInteractionController.h; sourceTree = "<group>"; };
 		81B1DED3181920B80060540F /* CEVerticalSwipeInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEVerticalSwipeInteractionController.m; sourceTree = "<group>"; };
+		81B1DEE018196AB60060540F /* CHSlideInterrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHSlideInterrator.h; sourceTree = "<group>"; };
+		81B1DEE118196AB60060540F /* CHSlideInterrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHSlideInterrator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +233,8 @@
 				81B1DEB11816D00B0060540F /* CHModalSpringTransition.h */,
 				81B1DEB21816D00B0060540F /* CHModalSpringTransition.m */,
 				63D06FA518188854009B064E /* CHModalFromTopTransition_subclass.h */,
+				81B1DEE018196AB60060540F /* CHSlideInterrator.h */,
+				81B1DEE118196AB60060540F /* CHSlideInterrator.m */,
 			);
 			name = "Simple custom";
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B1DEE218196AB60060540F /* CHSlideInterrator.m in Sources */,
 				81B1DEDD181920B80060540F /* CEHorizontalSwipeInteractionController.m in Sources */,
 				81B1DED4181920B80060540F /* CECardsAnimationController.m in Sources */,
 				6347DE801815CEAD00B3C932 /* CHMainViewController.m in Sources */,

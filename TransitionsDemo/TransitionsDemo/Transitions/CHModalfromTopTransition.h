@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+extern NSUInteger const dimViewTag;
+
 @interface CHModalFromTopTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, assign) BOOL  presenting;         //Dismissing if NO

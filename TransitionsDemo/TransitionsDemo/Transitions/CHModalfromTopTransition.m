@@ -10,6 +10,8 @@
 
 @implementation CHModalFromTopTransition
 
+NSUInteger const dimViewTag = 1234;
+
 - (id)initForPresenting:(BOOL)presenting
 {
     self = [super init];
@@ -23,8 +25,6 @@
 ///////////////////////////////////////////////////////////
 #pragma mark - UIViewControllerAnimatedTransitioning
 
-// This is used for percent driven interactive transitions, as well as for container controllers that have companion animations that might need to
-// synchronize with the main animation.
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     return 0.5;
@@ -34,19 +34,20 @@
 // This method can only be a nop if the transition is interactive and not a percentDriven interactive transition.
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    NSLog(@"Animate with context : %@", transitionContext);
-    
+    //Get content
     UIView *fView               = [[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] view];
-    UIView *tView               = [[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] view];
+    UIView *tView               = [[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey]   view];
     
     UIView *cView               = [transitionContext containerView];
     
+    //Compute custom end frame and start frame
     CGRect endFrame             = CGRectMake(20, 80, 280, fView.bounds.size.height-160);
     CGRect startFrame           = endFrame;
     startFrame.origin.y        -= (endFrame.size.height + endFrame.origin.y);
     
     if(self.presenting)
     {
+        //Present animation
         fView.userInteractionEnabled = NO;
         
         [cView addSubview:fView];
@@ -66,6 +67,7 @@
     }
     else
     {
+        //Dismiss animation
         tView.userInteractionEnabled = YES;
         
         [cView addSubview:tView];
@@ -86,12 +88,23 @@
     }
 }
 
-- (void)presentingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
+
+
+
+
+
+
+- (void)presentingAnimationFromView:(UIView*)fView
+                             toView:(UIView*)tView
+                      onContentView:(UIView*)cView
+                           endFrame:(CGRect)endFrame
+                           duration:(NSTimeInterval)duration
+                         completion:(void(^)(BOOL))completion
 {
     UIView *dim = [[UIView alloc] initWithFrame:fView.bounds];
     dim.backgroundColor = [UIColor blackColor];
     dim.alpha = 0;
-    dim.tag = 1234;
+    dim.tag = dimViewTag;
     [fView addSubview:dim];
     
     [UIView animateWithDuration:duration
@@ -110,9 +123,20 @@
      }];
 }
 
-- (void)dismissingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
+
+
+
+
+
+
+- (void)dismissingAnimationFromView:(UIView*)fView
+                             toView:(UIView*)tView
+                      onContentView:(UIView*)cView
+                           endFrame:(CGRect)endFrame
+                           duration:(NSTimeInterval)duration
+                         completion:(void(^)(BOOL))completion
 {
-    UIView *dim = [tView viewWithTag:1234];
+    UIView *dim = [tView viewWithTag:dimViewTag];
     
     [UIView animateWithDuration:duration
                      animations:^
@@ -130,6 +154,9 @@
          if(completion) completion(finished);
      }];
 }
+
+
+
 
 - (void)animationEnded:(BOOL)transitionCompleted
 {

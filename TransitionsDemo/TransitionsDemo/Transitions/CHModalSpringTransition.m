@@ -14,20 +14,23 @@
 ///////////////////////////////////////////////////////////
 #pragma mark - UIViewControllerAnimatedTransitioning
 
-// This is used for percent driven interactive transitions, as well as for container controllers that have companion animations that might need to
-// synchronize with the main animation.
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
     return 1.5;
 }
 
-- (void)presentingAnimationFromView:(UIView*)fView toView:(UIView*)tView onContentView:(UIView*)cView endFrame:(CGRect)endFrame duration:(NSTimeInterval)duration completion:(void(^)(BOOL))completion
+- (void)presentingAnimationFromView:(UIView*)fView
+                             toView:(UIView*)tView
+                      onContentView:(UIView*)cView
+                           endFrame:(CGRect)endFrame
+                           duration:(NSTimeInterval)duration
+                         completion:(void(^)(BOOL))completion
 {
     
     UIView *dim = [[UIView alloc] initWithFrame:fView.bounds];
     dim.backgroundColor = [UIColor blackColor];
     dim.alpha = 0;
-    dim.tag = 1234;
+    dim.tag = dimViewTag;
     [fView addSubview:dim];
     
     [UIView animateWithDuration:duration
