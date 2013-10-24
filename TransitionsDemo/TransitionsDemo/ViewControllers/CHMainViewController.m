@@ -17,6 +17,7 @@
 
 typedef NS_ENUM(NSUInteger, CHContextTransition)
 {
+    CHContextTransition_None            = 0,
     CHContextTransition_ModalFromTop    = 1,
     CHContextTransition_ModalSpring     = 2,
     CHContextTransition_ModalDrop       = 3
@@ -127,6 +128,8 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     //Basic
     if(indexPath.section == 0)
     {
@@ -137,54 +140,47 @@ typedef NS_ENUM(NSUInteger, CHContextTransition)
         }
         else if(indexPath.row == 1)
         {
-            //Modal
-            [self addCloseButton];
-            
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
-            
-            [self presentViewController:nav animated:YES completion:NULL];
+            [self presentControllerModallyWithTransition:CHContextTransition_None];
         }
     }
     else if(indexPath.section == 1)
     {
         if(indexPath.row == 0)
         {
-            self.contextTransition = CHContextTransition_ModalFromTop;
+            [self presentControllerModallyWithTransition:CHContextTransition_ModalFromTop];
         }
         else if(indexPath.row == 1)
         {
-            self.contextTransition = CHContextTransition_ModalSpring;
+            [self presentControllerModallyWithTransition:CHContextTransition_ModalSpring];
         }
-        
-        //Modal
-        [self addCloseButton];
-        
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
-        nav.transitioningDelegate = self;
-        nav.modalPresentationStyle = UIModalPresentationCustom;
-        
-        [self presentViewController:nav animated:YES completion:NULL];
     }
     else if(indexPath.section == 4)
     {
         if(indexPath.row == 0)
         {
-            self.contextTransition = CHContextTransition_ModalDrop;
+            [self presentControllerModallyWithTransition:CHContextTransition_ModalDrop];
         }
-        
-        //Modal
-        [self addCloseButton];
-        
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
-        nav.transitioningDelegate = self;
-        nav.modalPresentationStyle = UIModalPresentationCustom;
-        
-        [self presentViewController:nav animated:YES completion:NULL];
     }
 }
 
 ///////////////////////////////////////////////////////////
 #pragma mark - Actions
+
+- (void)presentControllerModallyWithTransition:(CHContextTransition)transition
+{
+    self.contextTransition = transition;
+    [self addCloseButton];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.logoVC];
+    
+    if(transition != CHContextTransition_None)
+    {
+        nav.transitioningDelegate = self;
+        nav.modalPresentationStyle = UIModalPresentationCustom;
+    }
+    
+    [self presentViewController:nav animated:YES completion:NULL];
+}
 
 - (void)addCloseButton
 {
